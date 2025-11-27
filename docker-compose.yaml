@@ -1,0 +1,32 @@
+services:
+  amr_sim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: amr_ros2:jazzy
+    container_name: amr_sim
+    # Use host network for easiest ROS 2 communication
+    network_mode: host
+    ipc: host
+    pid: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - .:/home/ros/ws/src
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /home/${USER}/.Xauthority:/home/ros/.Xauthority:rw
+    working_dir: /home/ros/ws
+    command: /bin/bash -c "sleep infinity"
+    # Uncomment if using NVIDIA GPU
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
