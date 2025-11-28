@@ -17,10 +17,11 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - .:/home/ros/ws/src
+      - ./ros2_ws:/home/ros/ros2_ws
+      - ./gazebo_ws:/home/ros/gazebo_ws
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - /home/${USER}/.Xauthority:/home/ros/.Xauthority:rw
-    working_dir: /home/ros/ws
+    working_dir: /home/ros/ros2_ws
     command: /bin/bash -c "sleep infinity"
     # Uncomment if using NVIDIA GPU
     # deploy:
