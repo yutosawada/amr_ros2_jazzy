@@ -27,11 +27,28 @@ def generate_launch_description():
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist'],
+        arguments=[
+            '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+            '/lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+        ],
+        remappings=[
+            ('/lidar', '/scan')
+        ],
+        output='screen'
+    )
+
+    # Static Transform Publisher for LiDAR
+    # Links the Gazebo frame (vehicle_blue/lidar/gpu_lidar) to the URDF frame (lidar_link)
+    lidar_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='lidar_static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'lidar_link', 'vehicle_blue/lidar/gpu_lidar'],
         output='screen'
     )
 
     return LaunchDescription([
         gz_sim,
         bridge,
+        lidar_tf,
     ])

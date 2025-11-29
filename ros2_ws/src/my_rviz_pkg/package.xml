@@ -1,17 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-    <name>amr_bringup_pkg</name>
+    <name>my_rviz_pkg</name>
     <version>0.0.0</version>
-    <description>AMR Bringup Package</description>
+    <description>My RViz Package</description>
     <maintainer email="user@todo.todo">user</maintainer>
     <license>TODO: License declaration</license>
-
-    <exec_depend>ros_gz_sim</exec_depend>
-    <exec_depend>teleop_twist_keyboard</exec_depend>
-    <exec_depend>amr_sim_pkg</exec_depend>
-    <exec_depend>amr_description_pkg</exec_depend>
-    <exec_depend>my_rviz_pkg</exec_depend>
 
     <test_depend>ament_copyright</test_depend>
     <test_depend>ament_flake8</test_depend>

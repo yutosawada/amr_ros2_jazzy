@@ -7,10 +7,24 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     pkg_amr_sim = get_package_share_directory('amr_sim_pkg')
+    pkg_amr_description = get_package_share_directory('amr_description_pkg')
+    pkg_my_rviz = get_package_share_directory('my_rviz_pkg')
 
     amr_sim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_amr_sim, 'launch', 'amr_sim.launch.py')
+        )
+    )
+
+    state_publisher_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_amr_description, 'launch', 'state_publisher.launch.py')
+        )
+    )
+
+    rviz_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_my_rviz, 'launch', 'rviz.launch.py')
         )
     )
 
@@ -24,5 +38,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         amr_sim_launch,
+        state_publisher_launch,
+        rviz_launch,
         teleop_node
     ])

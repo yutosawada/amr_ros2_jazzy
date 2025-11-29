@@ -4,6 +4,8 @@ FROM osrf/ros:jazzy-desktop
 RUN apt-get update && apt-get install -y \
     ros-jazzy-ros-gz \
     ros-jazzy-teleop-twist-keyboard \
+    ros-jazzy-joint-state-publisher-gui \
+    ros-jazzy-xacro \
     xterm \
     && rm -rf /var/lib/apt/lists/*
 
