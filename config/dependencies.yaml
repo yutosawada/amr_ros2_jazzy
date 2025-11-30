@@ -1,0 +1,22 @@
+apt:
+  - ros-jazzy-ros-gz
+  - ros-jazzy-rqt-tf-tree
+  - ros-jazzy-rqt-robot-steering
+  - ros-jazzy-rqt-plot
+  - ros-jazzy-rqt-graph
+  - ros-jazzy-rqt-console
+  - ros-jazzy-rqt-image-view
+  - ros-jazzy-navigation2
+  - ros-jazzy-nav2-bringup
+  - ros-jazzy-slam-toolbox
+  - ros-jazzy-teleop-twist-keyboard
+  - ros-jazzy-joint-state-publisher-gui
+  - ros-jazzy-xacro
+  - xterm
+  - sudo
+  - python3-yaml
+
+git:
+#  - url: https://github.com/ros-navigation/navigation2.git
+#    version: jazzy
+#    path: src/navigation2

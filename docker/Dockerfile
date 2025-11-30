@@ -1,13 +1,12 @@
 FROM osrf/ros:jazzy-desktop
 
 # Install Gazebo Harmonic
-RUN apt-get update && apt-get install -y \
-    ros-jazzy-ros-gz \
-    ros-jazzy-teleop-twist-keyboard \
-    ros-jazzy-joint-state-publisher-gui \
-    ros-jazzy-xacro \
-    xterm \
-    && rm -rf /var/lib/apt/lists/*
+# Copy dependency files
+COPY config/dependencies.yaml .
+COPY config/install_dependencies.sh .
+
+# Run dependency installation script
+RUN chmod +x install_dependencies.sh && ./install_dependencies.sh
 
 # Create a user 'ros' with the same UID/GID as the host user
 # The base image (Ubuntu 24.04) creates a user 'ubuntu' with UID 1000.
