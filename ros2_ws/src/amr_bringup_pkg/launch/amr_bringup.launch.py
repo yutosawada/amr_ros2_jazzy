@@ -19,13 +19,15 @@ def generate_launch_description():
     state_publisher_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_amr_description, 'launch', 'state_publisher.launch.py')
-        )
+        ),
+        launch_arguments={'use_sim_time': 'true'}.items()
     )
 
     rviz_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_my_rviz, 'launch', 'rviz.launch.py')
-        )
+        ),
+        launch_arguments={'use_sim_time': 'true'}.items()
     )
 
     teleop_node = Node(

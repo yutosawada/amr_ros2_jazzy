@@ -30,9 +30,15 @@ def generate_launch_description():
         arguments=[
             '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
             '/lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+            '/model/vehicle_blue/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry',
+            '/model/vehicle_blue/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V',
+            '/world/car_world/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock',
         ],
         remappings=[
-            ('/lidar', '/scan')
+            ('/lidar', '/scan'),
+            ('/model/vehicle_blue/odometry', '/odom'),
+            ('/model/vehicle_blue/tf', '/tf'),
+            ('/world/car_world/clock', '/clock')
         ],
         output='screen'
     )
@@ -47,8 +53,28 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Static Transform Publisher for Odom
+    odom_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='odom_static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'odom', 'vehicle_blue/odom'],
+        output='screen'
+    )
+
+    # Static Transform Publisher for Chassis
+    chassis_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='chassis_static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'vehicle_blue/chassis', 'chassis'],
+        output='screen'
+    )
+
     return LaunchDescription([
         gz_sim,
         bridge,
         lidar_tf,
+        odom_tf,
+        chassis_tf,
     ])
