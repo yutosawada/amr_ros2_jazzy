@@ -2,7 +2,9 @@ services:
   amr_sim:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
+      args:
+        - USER_UID=${UID:-1000}
     image: amr_ros2:jazzy
     container_name: amr_sim
     # Use host network for easiest ROS 2 communication
@@ -17,10 +19,10 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - .:/home/ros/ws/src
+      - ./ros2_ws:/home/ros/ros2_ws
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - /home/${USER}/.Xauthority:/home/ros/.Xauthority:rw
-    working_dir: /home/ros/ws
+    working_dir: /home/ros/ros2_ws
     command: /bin/bash -c "sleep infinity"
     # Uncomment if using NVIDIA GPU
     # deploy:
