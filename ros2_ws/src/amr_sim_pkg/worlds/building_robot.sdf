@@ -230,6 +230,7 @@
                     <pose relative_to='lidar_frame'>0 0 0 0 0 0</pose>
                     <topic>lidar</topic>
                     <update_rate>10</update_rate>
+                    <frame_id>lidar_link</frame_id>
                     <ray>
                         <scan>
                             <horizontal>
@@ -339,6 +340,8 @@
                 <wheel_radius>0.4</wheel_radius>
                 <odom_publish_frequency>50</odom_publish_frequency>
                 <topic>cmd_vel</topic>
+                <frame_id>odom</frame_id>
+                <child_frame_id>base_link</child_frame_id>
             </plugin>
         </model>
 

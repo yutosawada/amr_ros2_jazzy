@@ -30,7 +30,9 @@ def generate_launch_description():
         arguments=[
             '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
             '/lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+            # Odom is bridged as a topic for Nav2, but TF handles the transform
             '/model/vehicle_blue/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry',
+            # TF bridge (carries odom->base_link)
             '/model/vehicle_blue/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V',
             '/world/car_world/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock',
         ],
@@ -43,38 +45,15 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Static Transform Publisher for LiDAR
-    # Links the Gazebo frame (vehicle_blue/lidar/gpu_lidar) to the URDF frame (lidar_link)
-    lidar_tf = Node(
+    lidar_frame_match = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
-        name='lidar_static_transform_publisher',
         arguments=['0', '0', '0', '0', '0', '0', 'lidar_link', 'vehicle_blue/lidar/gpu_lidar'],
-        output='screen'
-    )
-
-    # Static Transform Publisher for Odom
-    odom_tf = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='odom_static_transform_publisher',
-        arguments=['0', '0', '0', '0', '0', '0', 'odom', 'vehicle_blue/odom'],
-        output='screen'
-    )
-
-    # Static Transform Publisher for Chassis
-    chassis_tf = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='chassis_static_transform_publisher',
-        arguments=['0', '0', '0', '0', '0', '0', 'vehicle_blue/chassis', 'chassis'],
         output='screen'
     )
 
     return LaunchDescription([
         gz_sim,
         bridge,
-        lidar_tf,
-        odom_tf,
-        chassis_tf,
+        lidar_frame_match,
     ])
