@@ -6,7 +6,7 @@ from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
 
 def generate_launch_description():
-    pkg_share = get_package_share_directory('amr_description_pkg')
+    pkg_share = get_package_share_directory('amr_description')
     default_model_path = os.path.join(pkg_share, 'urdf', 'amr.urdf.xacro')
     
     # Process the URDF file

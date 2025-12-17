@@ -14,13 +14,28 @@ def generate_launch_description():
     # Setup project paths
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
     pkg_amr_sim = get_package_share_directory('amr_sim_pkg')
-    sdf_file = os.path.join(pkg_amr_sim, 'worlds', 'building_robot.sdf')
+    world_file = os.path.join(pkg_amr_sim, 'worlds', 'amr_world.sdf')
+    robot_file = os.path.join(pkg_amr_sim, 'worlds', 'amr.sdf')
 
     # Setup to launch the simulator and Gazebo world
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
-        launch_arguments={'gz_args': f'-r {sdf_file}'}.items(),
+        launch_arguments={'gz_args': f'-r {world_file}'}.items(),
+    )
+
+    # Spawn robot
+    spawn_robot = Node(
+        package='ros_gz_sim',
+        executable='create',
+        arguments=[
+            '-name', 'vehicle_blue',
+            '-file', robot_file,
+            '-x', '0.0',
+            '-y', '0.0',
+            '-z', '0.0'
+        ],
+        output='screen'
     )
 
     # Bridge
@@ -54,6 +69,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         gz_sim,
+        spawn_robot,
         bridge,
         lidar_frame_match,
     ])
