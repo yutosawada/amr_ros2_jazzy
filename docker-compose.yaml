@@ -5,6 +5,9 @@ services:
       dockerfile: docker/Dockerfile
       args:
         - USER_UID=${UID:-1000}
+        - USER_GID=${GID:-1000}
+    user: "${UID:-1000}:${GID:-1000}"
+
     image: amr_ros2:jazzy
     container_name: amr_sim
     # Use host network for easiest ROS 2 communication
@@ -16,13 +19,14 @@ services:
       - QT_X11_NO_MITSHM=1
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
+      - XAUTHORITY=/workspace/.Xauthority
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - ./ros2_ws:/home/ros/ros2_ws
+      - ./ros2_ws:/workspace/ros2_ws
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - /home/${USER}/.Xauthority:/home/ros/.Xauthority:rw
-    working_dir: /home/ros/ros2_ws
+      - /home/${USER}/.Xauthority:/workspace/.Xauthority:rw
+    working_dir: /workspace/ros2_ws
     command: /bin/bash -c "sleep infinity"
     # Uncomment if using NVIDIA GPU
     # deploy:

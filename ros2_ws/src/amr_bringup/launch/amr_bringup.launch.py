@@ -7,7 +7,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     pkg_amr_sim = get_package_share_directory('amr_sim_pkg')
-    pkg_amr_description = get_package_share_directory('amr_description_pkg')
+    pkg_amr_description = get_package_share_directory('amr_description')
     pkg_my_rviz = get_package_share_directory('my_rviz_pkg')
 
     amr_sim_launch = IncludeLaunchDescription(
