@@ -43,10 +43,16 @@
   </xacro:macro>
 
   <!-- Robot Base -->
-  <link name="base_link">
+  <link name="base_footprint">
   </link>
 
-  <link name="chassis">
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0.0 0.0 0.2" rpy="0 0 0" />
+  </joint>
+
+  <link name="base_link">
     <visual>
       <geometry>
         <box size="${base_length} ${base_width} ${base_height}" />
@@ -62,12 +68,6 @@
     </collision>
     <xacro:box_inertia m="30" w="${base_width}" d="${base_length}" h="${base_height}" />
   </link>
-
-  <joint name="base_joint" type="fixed">
-    <parent link="base_link" />
-    <child link="chassis" />
-    <origin xyz="0.0 0.0 0.2" rpy="0 0 0" />
-  </joint>
 
   <!-- Wheels -->
   <xacro:macro name="wheel" params="prefix x_reflect y_reflect">
@@ -91,7 +91,7 @@
     </link>
 
     <joint name="${prefix}_joint" type="continuous">
-      <parent link="chassis" />
+      <parent link="base_link" />
       <child link="${prefix}_link" />
       <origin xyz="${-wheel_xoff} ${y_reflect*(base_width/2 + wheel_ygap)} ${-wheel_zoff}"
         rpy="0 0 0" />
@@ -121,7 +121,7 @@
   </link>
 
   <joint name="front_caster_joint" type="fixed">
-    <parent link="chassis" />
+    <parent link="base_link" />
     <child link="front_caster" />
     <origin xyz="${caster_xoff} 0.0 -0.15" rpy="0 0 0" />
   </joint>
@@ -145,7 +145,7 @@
   </link>
 
   <joint name="rear_caster_joint" type="fixed">
-    <parent link="chassis" />
+    <parent link="base_link" />
     <child link="rear_caster" />
     <origin xyz="${-caster_xoff} 0.0 -0.15" rpy="0 0 0" />
   </joint>
@@ -163,7 +163,7 @@
   </link>
 
   <joint name="imu_joint" type="fixed">
-    <parent link="chassis" />
+    <parent link="base_link" />
     <child link="imu_link" />
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
@@ -181,7 +181,7 @@
   </link>
 
   <joint name="lidar_joint" type="fixed">
-    <parent link="chassis" />
+    <parent link="base_link" />
     <child link="lidar_link" />
     <origin xyz="0.4 0 0.2" rpy="0 0 0" />
   </joint>

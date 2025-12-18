@@ -38,9 +38,17 @@ def generate_launch_description():
         prefix='xterm -e'
     )
 
+    debug_lidar_node = Node(
+        package='amr_debug',
+        executable='debug_lidar',
+        name='debug_lidar',
+        output='screen'
+    )
+
     return LaunchDescription([
         amr_sim_launch,
         state_publisher_launch,
         rviz_launch,
+#        debug_lidar_node,
         teleop_node
     ])
