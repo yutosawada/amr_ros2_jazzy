@@ -13,7 +13,7 @@
   <xacro:property name="wheel_xoff" value="0.0" /> <!-- Wheel x offset from center (rear) -->
 
   <xacro:property name="caster_xoff" value="0.4" /> <!-- Caster x offset (front) -->
-  <xacro:property name="caster_radius" value="0.05" />
+  <xacro:property name="caster_radius" value="0.15" />
 
   <!-- Define intertial property macros  -->
   <xacro:macro name="box_inertia" params="m w h d">
