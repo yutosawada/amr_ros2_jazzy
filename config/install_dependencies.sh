@@ -104,4 +104,4 @@ install_git() {
 }
 
 install_apt
-install_git
+# install_git

@@ -1,7 +1,9 @@
-# ROS 2
-build/
-install/
-log/
+# ROS ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+ros2_ws/src/slam_toolbox/
+ros2_ws/src/robot_localization/
+ros2_ws/src/navigation2/
 *.log
 
 # Python

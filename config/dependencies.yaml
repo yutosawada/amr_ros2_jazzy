@@ -6,17 +6,39 @@ apt:
   - ros-jazzy-rqt-graph
   - ros-jazzy-rqt-console
   - ros-jazzy-rqt-image-view
-  - ros-jazzy-navigation2
-  - ros-jazzy-nav2-bringup
-  - ros-jazzy-slam-toolbox
+#  - ros-jazzy-navigation2
+#  - ros-jazzy-nav2-bringup
+#  - ros-jazzy-slam-toolbox
   - ros-jazzy-teleop-twist-keyboard
   - ros-jazzy-joint-state-publisher-gui
   - ros-jazzy-xacro
   - xterm
   - sudo
   - python3-yaml
-
+  - ros-jazzy-diagnostic-updater
+  - ros-jazzy-geographic-msgs
+  - ros-jazzy-angles
+  - ros-jazzy-behaviortree-cpp
+  - ros-jazzy-ompl
+  - ros-jazzy-bondcpp
+  - ros-jazzy-test-msgs
+  - libgeographiclib-dev
+  - libsuitesparse-dev
+  - libceres-dev
+  - libgraphicsmagick++1-dev
+  - ros-jazzy-backward-ros
+  - libxsimd-dev
+  - xtensor-dev
+  - libnanoflann-dev
 git:
   - url: https://github.com/InnovationDept-FUJI/robot_localization.git
     version: jazzy-devel
+    path: src
+
+  - url: https://github.com/yutosawada/navigation2.git
+    version: jazzy
+    path: src
+
+  - url: https://github.com/yutosawada/slam_toolbox.git
+    version: jazzy
     path: src
