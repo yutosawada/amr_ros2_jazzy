@@ -438,7 +438,7 @@
             </joint>
 
             <link name='base_link'>
-                <pose relative_to='base_footprint'>0 0 0.2 0 0 0</pose>
+                <pose relative_to='base_footprint'>0 0 0.15 0 0 0</pose>
                 <inertial> <!--inertial
                     properties of the link mass, inertia matix-->
                     <mass>2.2879</mass>
@@ -454,7 +454,7 @@
                 <visual name='visual'>
                     <geometry>
                         <box>
-                            <size>1.0 0.6 0.2</size>
+                            <size>1.0 0.6 0.1</size>
                         </box>
                     </geometry>
                     <!--let's
@@ -468,7 +468,7 @@
                 <collision name='collision'>
                     <geometry>
                         <box>
-                            <size>1.0 0.6 0.2</size>
+                            <size>1.0 0.6 0.1</size>
                         </box>
                     </geometry>
                 </collision>
@@ -523,7 +523,7 @@
             </link>
 
             <link name='left_wheel'>
-                <pose relative_to="base_link">0 0.4 -0.15 -1.5707 0 0</pose>
+                <pose relative_to="base_link">0 0.25 -0.075 -1.5707 0 0</pose>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -538,7 +538,7 @@
                 <visual name='visual'>
                     <geometry>
                         <cylinder>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                             <length>0.1</length>
                         </cylinder>
                     </geometry>
@@ -551,7 +551,7 @@
                 <collision name='collision'>
                     <geometry>
                         <cylinder>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                             <length>0.1</length>
                         </cylinder>
                     </geometry>
@@ -559,7 +559,7 @@
             </link>
 
             <link name='right_wheel'>
-                <pose relative_to="base_link">0 -0.4 -0.15 -1.5707 0 0</pose>
+                <pose relative_to="base_link">0 -0.25 -0.075 -1.5707 0 0</pose>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -574,7 +574,7 @@
                 <visual name='visual'>
                     <geometry>
                         <cylinder>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                             <length>0.1</length>
                         </cylinder>
                     </geometry>
@@ -587,7 +587,7 @@
                 <collision name='collision'>
                     <geometry>
                         <cylinder>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                             <length>0.1</length>
                         </cylinder>
                     </geometry>
@@ -595,15 +595,15 @@
             </link>
 
             <frame name="front_caster_frame" attached_to='base_link'>
-                <pose>0.4 0 -0.15 0 0 0</pose>
+                <pose>0.4 0 -0.075 0 0 0</pose>
             </frame>
 
             <frame name="rear_caster_frame" attached_to='base_link'>
-                <pose>-0.4 0 -0.15 0 0 0</pose>
+                <pose>-0.4 0 -0.075 0 0 0</pose>
             </frame>
 
             <frame name="lidar_frame" attached_to='base_link'>
-                <pose>0.4 0 0.2 0 0 0</pose>
+                <pose>0.4 0 0.1 0 0 0</pose>
             </frame>
 
             <link name='lidar'>
@@ -687,7 +687,7 @@
                 <visual name='visual'>
                     <geometry>
                         <sphere>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                         </sphere>
                     </geometry>
                     <material>
@@ -699,7 +699,7 @@
                 <collision name='collision'>
                     <geometry>
                         <sphere>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                         </sphere>
                     </geometry>
                 </collision>
@@ -721,7 +721,7 @@
                 <visual name='visual'>
                     <geometry>
                         <sphere>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                         </sphere>
                     </geometry>
                     <material>
@@ -733,7 +733,7 @@
                 <collision name='collision'>
                     <geometry>
                         <sphere>
-                            <radius>0.15</radius>
+                            <radius>0.075</radius>
                         </sphere>
                     </geometry>
                 </collision>
@@ -789,8 +789,8 @@
                 name="gz::sim::systems::DiffDrive">
                 <left_joint>left_wheel_joint</left_joint>
                 <right_joint>right_wheel_joint</right_joint>
-                <wheel_separation>0.8</wheel_separation>
-                <wheel_radius>0.15</wheel_radius>
+                <wheel_separation>0.5</wheel_separation>
+                <wheel_radius>0.075</wheel_radius>
                 <odom_publish_frequency>50</odom_publish_frequency>
                 <topic>cmd_vel</topic>
                 <frame_id>odom</frame_id>
