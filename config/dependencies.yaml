@@ -17,6 +17,6 @@ apt:
   - python3-yaml
 
 git:
-#  - url: https://github.com/ros-navigation/navigation2.git
-#    version: jazzy
-#    path: src/navigation2
+  - url: https://github.com/InnovationDept-FUJI/robot_localization.git
+    version: jazzy-devel
+    path: src

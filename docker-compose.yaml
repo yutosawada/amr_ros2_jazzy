@@ -3,10 +3,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-      args:
-        - USER_UID=${UID:-1000}
-        - USER_GID=${GID:-1000}
-    user: "${UID:-1000}:${GID:-1000}"
+
 
     image: amr_ros2:jazzy
     container_name: amr_sim
